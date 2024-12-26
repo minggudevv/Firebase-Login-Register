@@ -150,7 +150,7 @@ Contains custom styles for the application, including form and button styles.
 
 ### Dashboard
 
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](screenshots/Dashboard.png)
 ![Login History](screenshots/Login%20History.png)
 
 ## License
