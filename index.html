@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Auth</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="src/style/style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <h3 class="text-center mb-4">Welcome Back</h3>
+                        <ul class="nav nav-tabs justify-content-center" id="authTabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#signin">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#signup">
+                                    <i class="fas fa-user-plus me-2"></i>Sign Up
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content mt-4">
+                            <div class="tab-pane fade show active" id="signin">
+                                <form id="signinForm">
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-transparent">
+                                                <i class="fas fa-envelope"></i>
+                                            </span>
+                                            <input type="email" class="form-control" id="signinEmail" placeholder="Email" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-transparent">
+                                                <i class="fas fa-lock"></i>
+                                            </span>
+                                            <input type="password" class="form-control" id="signinPassword" placeholder="Password" required>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="signup">
+                                <form id="signupForm">
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-transparent">
+                                                <i class="fas fa-user"></i>
+                                            </span>
+                                            <input type="text" class="form-control" id="signupName" placeholder="Full Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-transparent">
+                                                <i class="fas fa-envelope"></i>
+                                            </span>
+                                            <input type="email" class="form-control" id="signupEmail" placeholder="Email" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-transparent">
+                                                <i class="fas fa-lock"></i>
+                                            </span>
+                                            <input type="password" class="form-control" id="signupPassword" placeholder="Password" required>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="fas fa-user-plus me-2"></i>Sign Up
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="src/script/firebase-config.js"></script>
+    <script type="module" src="src/script/auth.js"></script>
+</body>
+</html>
