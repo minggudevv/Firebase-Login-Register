@@ -1,6 +1,6 @@
 import { auth, database } from './firebase-config.js';
-import { updateProfile } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
-import { ref, set, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+import { updateProfile } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+import { ref, set, get } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
 // Handle URL update
 document.getElementById('updatePhotoBtn').addEventListener('click', async () => {

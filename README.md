@@ -1,14 +1,34 @@
-# Firebase Login and Register with Profile Photo URL
+# Firebase Login and Register System
 
-This project demonstrates a simple login and registration system using Firebase Authentication and Realtime Database. Users can sign up, sign in, and update their profile photo using a URL.
+A comprehensive authentication system using Firebase with features like login history tracking, profile management, and security features.
 
 ## Features
 
-- User registration with email and password
-- User login with email and password
-- Profile photo update using image URL
-- Firebase Realtime Database integration
-- Responsive design using Bootstrap
+- User Authentication:
+  - Email/Password Login & Registration
+  - Google Sign-in Integration
+  - Passwordless Email Link Authentication
+  - Password Reset Functionality
+
+- Security Features:
+  - PIN Protection System
+  - Login History Tracking (Last 20 entries)
+  - Device & IP Tracking
+  - Session Management
+
+- Profile Management:
+  - Profile Photo URL Update
+  - User Information Display
+  - Real-time Data Updates
+
+## Technical Details
+
+### Firebase Services Used
+- Firebase Authentication
+- Realtime Database
+- Security Rules Implementation
+
+### Database Structure
 
 ## Project Structure
 
@@ -121,15 +141,17 @@ Contains custom styles for the application, including form and button styles.
 
 ### Login Page
 
-![Login Page](screenshots/login.png)
+![Login Page](screenshots/signin.png)
+![Email Link](screenshots/Email%20Login.png)
 
 ### Registration Page
 
-![Registration Page](screenshots/register.png)
+![Registration Page](screenshots/signup.png)
 
 ### Dashboard
 
 ![Dashboard](screenshots/dashboard.png)
+![Login History](screenshots/Login%20History.png)
 
 ## License
 
@@ -141,4 +163,4 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 
 ## Contact
 
-For any questions or support, please contact [your-email@example.com](mailto:your-email@example.com).
+For any questions or support, please contact [contact.minggudev@gmail.com](mailto:contact.minggudev@gmail.com).
