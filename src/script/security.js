@@ -74,6 +74,16 @@ const initializeSecurityFeatures = () => {
 
 // Save login history with limit
 async function saveLoginHistory(user) {
+    const lastLoginKey = `lastLogin_${user.uid}`;
+    const lastLoginTime = localStorage.getItem(lastLoginKey);
+    const now = new Date();
+    const currentTime = now.getTime();
+
+    // Prevent multiple entries within 1 minute
+    if (lastLoginTime && (currentTime - parseInt(lastLoginTime)) < 60000) {
+        return;
+    }
+
     try {
         const userAgent = navigator.userAgent;
         const response = await fetch('https://api.ipify.org?format=json');
@@ -120,6 +130,9 @@ async function saveLoginHistory(user) {
                 }
             }
         }
+
+        // Update last login time
+        localStorage.setItem(lastLoginKey, currentTime.toString());
     } catch (error) {
         console.error('Error saving login history:', error);
     }

@@ -5,6 +5,8 @@ import { handleLogout } from './auth.js';
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+    let isInitialLoad = true;
+    
     // Check authentication state
     onAuthStateChanged(auth, async (user) => {
         if (user) {
@@ -26,9 +28,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
             }
             
-            // Load login history
-            loadLoginHistory();
-        } else {
+            // Load login history only on initial load
+            if (isInitialLoad) {
+                loadLoginHistory();
+                isInitialLoad = false;
+            }
+        } else if (!localStorage.getItem('authCredentials')) {
+            // Only redirect if no stored credentials
             window.location.href = 'index.html';
         }
     });
