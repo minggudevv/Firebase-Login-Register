@@ -1,6 +1,6 @@
 # Firebase Login and Register System
 
-A comprehensive authentication system using Firebase with features like login history tracking, profile management, and security features.
+A comprehensive authentication system using Firebase with features like login history tracking, profile management, theme switching, and auto-login capabilities.
 
 ## Features
 
@@ -21,12 +21,34 @@ A comprehensive authentication system using Firebase with features like login hi
   - User Information Display
   - Real-time Data Updates
 
+## New Features Added
+
+### 1. Theme Switching
+- Light/Dark theme support
+- Persistent theme preference
+- Automatic theme detection
+- Smooth theme transitions
+
+### 2. Auto-Login System
+- Remember me functionality
+- Secure credential storage
+- Automatic login on revisit
+- Manual logout clearing
+
+### 3. Enhanced User Experience
+- Theme toggle button in header
+- Remember me checkbox in login form
+- Persistent session management
+- Secure credential handling
+
 ## Technical Details
 
 ### Firebase Services Used
 - Firebase Authentication
 - Realtime Database
 - Security Rules Implementation
+
+### Theme System
 
 ### Database Structure
 

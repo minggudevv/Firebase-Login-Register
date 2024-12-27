@@ -4,9 +4,25 @@
     --accent-color: #34495e;
     --success-color: #2ecc71;
     --error-color: #e74c3c;
+
+    /* Theme Variables */
+    --bg-color: #f5f7fa;
+    --text-color: #2d3436;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --input-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+    --bg-color: #2d3436;
+    --text-color: #f5f7fa;
+    --card-bg: rgba(45, 52, 54, 0.95);
+    --input-bg: #353b48;
 }
 
 body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     min-height: 100vh;
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -17,7 +33,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--card-bg);
     transition: transform 0.3s ease;
 }
 
@@ -51,11 +67,15 @@ body {
     padding: 12px 20px;
     font-size: 1rem;
     transition: all 0.3s ease;
+    background-color: var(--input-bg);
+    color: var(--text-color);
 }
 
 .form-control:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    background-color: var(--input-bg);
+    color: var(--text-color);
 }
 
 .btn {

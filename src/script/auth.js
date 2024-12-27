@@ -7,7 +7,8 @@ import {
     signInWithEmailLink,
     signInWithPopup,
     isSignInWithEmailLink,
-    updateProfile 
+    updateProfile,
+    signOut
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 import { ref, set } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
@@ -36,9 +37,17 @@ document.getElementById('signinForm').addEventListener('submit', async (e) => {
     
     const email = document.getElementById('signinEmail').value;
     const password = document.getElementById('signinPassword').value;
+    const rememberMe = document.getElementById('rememberMe').checked;
 
     try {
-        await signInWithEmailAndPassword(auth, email, password);
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        
+        if (rememberMe) {
+            // Store credentials securely
+            const credentials = btoa(JSON.stringify({ email, password }));
+            localStorage.setItem('authCredentials', credentials);
+        }
+        
         window.location.href = 'dashboard.html';
     } catch (error) {
         showAlert('signin', error.message);
@@ -140,6 +149,7 @@ window.addEventListener('load', async () => {
             showAlert('signin', error.message);
         }
     }
+    checkAutoLogin();
 });
 
 // Enhanced alert function
@@ -153,4 +163,25 @@ function showAlert(formType, message, type = 'danger') {
     container.appendChild(alertDiv);
     
     setTimeout(() => alertDiv.remove(), 3000);
+}
+
+// Auto-login check
+async function checkAutoLogin() {
+    const savedCredentials = localStorage.getItem('authCredentials');
+    if (savedCredentials) {
+        try {
+            const { email, password } = JSON.parse(atob(savedCredentials));
+            await signInWithEmailAndPassword(auth, email, password);
+            window.location.href = 'dashboard.html';
+        } catch (error) {
+            localStorage.removeItem('authCredentials');
+            console.error('Auto-login failed:', error);
+        }
+    }
+}
+
+// Logout handler to clear saved credentials
+export function handleLogout() {
+    localStorage.removeItem('authCredentials');
+    signOut(auth);
 }

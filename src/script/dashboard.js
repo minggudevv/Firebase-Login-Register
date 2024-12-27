@@ -1,6 +1,7 @@
 import { auth, database } from './firebase-config.js';
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 import { ref, query, orderByChild, limitToLast, onValue } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+import { handleLogout } from './auth.js';
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -37,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (signoutBtn) {
         signoutBtn.addEventListener('click', async () => {
             try {
-                await signOut(auth);
+                await handleLogout();
                 window.location.href = 'index.html';
             } catch (error) {
                 alert('Error signing out: ' + error.message);
