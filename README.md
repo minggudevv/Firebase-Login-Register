@@ -94,7 +94,10 @@ Set the following rules in the Firebase Realtime Database:
     "users": {
       "$uid": {
         ".read": "$uid === auth.uid",
-        ".write": "$uid === auth.uid"
+        ".write": "$uid === auth.uid",
+        "loginHistory": {
+          ".indexOn": ["timestamp"]
+        }
       }
     }
   }
