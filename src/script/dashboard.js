@@ -92,22 +92,20 @@ function loadLoginHistory() {
                     const deviceInfo = getDeviceInfo(entry.userAgent);
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td>
-                            <div class="fw-bold">${formatDate(entry.formattedDate)}</div>
+                        <td class="date-column">
+                            <div class="fw-medium">${formatDate(entry.formattedDate)}</div>
                             <small class="text-muted">${entry.formattedTime}</small>
                         </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <span class="badge bg-primary bg-opacity-10 text-primary">
-                                    <i class="fas fa-globe me-1"></i>
-                                    ${entry.ip || 'N/A'}
-                                </span>
-                            </div>
+                        <td class="ip-column">
+                            <span class="ip-badge">
+                                <i class="fas fa-globe me-2"></i>
+                                ${entry.ip || 'N/A'}
+                            </span>
                         </td>
-                        <td>
+                        <td class="device-column">
                             <div class="device-info">
-                                <i class="device-icon ${deviceInfo.icon}"></i>
-                                <div>
+                                <i class="${deviceInfo.icon}"></i>
+                                <div class="details">
                                     <div class="fw-medium">${deviceInfo.browser}</div>
                                     <small class="text-muted">${deviceInfo.os}</small>
                                 </div>
@@ -125,10 +123,10 @@ function loadLoginHistory() {
 function showEmptyState(table) {
     table.innerHTML = `
         <tr>
-            <td colspan="3">
+            <td colspan="3" class="text-center p-5">
                 <div class="empty-state">
-                    <i class="fas fa-history"></i>
-                    <h5>No Login History</h5>
+                    <i class="fas fa-history fa-3x mb-3 text-muted"></i>
+                    <h5 class="text-dark">No Login History</h5>
                     <p class="text-muted mb-0">Your login history will appear here</p>
                 </div>
             </td>

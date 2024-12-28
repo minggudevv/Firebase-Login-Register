@@ -843,3 +843,227 @@ small,
     opacity: 0.5;
     margin-bottom: 1rem;
 }
+
+/* Login History Specific Styles */
+#loginHistoryModal .table {
+    background: var(--card-bg);
+}
+
+#loginHistoryModal .table thead {
+    background: var(--bg-color);
+}
+
+#loginHistoryModal .table thead th {
+    color: var(--text-color) !important;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1rem;
+}
+
+#loginHistoryModal .table tbody tr {
+    background: var(--card-bg);
+}
+
+#loginHistoryModal .table tbody td {
+    color: var(--text-color) !important;
+    background: transparent;
+    vertical-align: middle;
+}
+
+#loginHistoryModal .ip-badge {
+    background: var(--primary-color) !important;
+    color: white !important;
+    font-weight: normal;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+}
+
+#loginHistoryModal .device-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-color);
+}
+
+#loginHistoryModal .device-info i {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+#loginHistoryModal .device-info .browser-info {
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+#loginHistoryModal .device-info .os-info {
+    font-size: 0.875rem;
+    opacity: 0.7;
+}
+
+/* Bootstrap overrides for dark mode */
+[data-theme="dark"] .bg-light {
+    background-color: var(--card-bg) !important;
+}
+
+[data-theme="dark"] .bg-white {
+    background-color: var(--card-bg) !important;
+}
+
+[data-theme="dark"] .border {
+    border-color: var(--border-color) !important;
+}
+
+/* Fix text colors in dark mode */
+[data-theme="dark"] .text-dark {
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .text-muted {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Login History Table Improvements */
+#loginHistoryModal .table tr {
+    border-bottom: 1px solid var(--border-color);
+    background: var(--card-bg);
+}
+
+#loginHistoryModal .table thead tr {
+    background: var(--bg-color);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+#loginHistoryModal .table thead th {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: var(--text-color);
+    padding: 1rem;
+    border: none;
+}
+
+#loginHistoryModal .table tbody tr {
+    transition: all 0.2s ease;
+}
+
+#loginHistoryModal .table tbody tr:hover {
+    background: var(--hover-bg);
+    cursor: default;
+}
+
+#loginHistoryModal .table tbody td {
+    padding: 1rem;
+    vertical-align: middle;
+    border: none;
+}
+
+#loginHistoryModal .table tbody td:first-child {
+    font-weight: 500;
+}
+
+#loginHistoryModal .table .date-column {
+    min-width: 150px;
+}
+
+#loginHistoryModal .table .ip-column {
+    min-width: 140px;
+}
+
+#loginHistoryModal .table .device-column {
+    min-width: 200px;
+}
+
+/* Badge and Icon Styles */
+#loginHistoryModal .ip-badge {
+    display: inline-flex;
+    align-items: center;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+#loginHistoryModal .device-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+#loginHistoryModal .device-info i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+}
+
+#loginHistoryModal .device-info .details {
+    line-height: 1.4;
+}
+
+/* Login History Table Dark Mode Fixes */
+#loginHistoryModal .table-responsive {
+    background: var(--modal-bg);
+    border: 1px solid var(--border-color);
+}
+
+#loginHistoryModal .table {
+    background: transparent;
+    color: var(--text-color);
+}
+
+#loginHistoryModal thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--modal-bg) !important;
+}
+
+#loginHistoryModal thead th {
+    background: var(--modal-bg);
+    color: var(--text-color) !important;
+    border-bottom: 2px solid var(--border-color);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    padding: 1rem;
+}
+
+#loginHistoryModal tbody tr {
+    background: var(--modal-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+#loginHistoryModal tbody tr:last-child {
+    border-bottom: none;
+}
+
+#loginHistoryModal tbody td {
+    background: transparent;
+    color: var(--text-color) !important;
+}
+
+/* Override Bootstrap table styles */
+.table>:not(caption)>*>* {
+    background-color: transparent !important;
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--text-color);
+}
+
+/* Add border contrast in dark mode */
+[data-theme="dark"] #loginHistoryModal .table-responsive {
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] #loginHistoryModal thead th {
+    border-color: var(--border-color);
+}
