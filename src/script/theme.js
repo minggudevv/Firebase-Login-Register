@@ -10,7 +10,7 @@ function setTheme(theme) {
 
 // Initialize theme
 document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     setTheme(savedTheme);
 
     const themeToggle = document.getElementById('themeToggle');

@@ -1,47 +1,47 @@
-# Firebase Login and Register System
+# Firebase Authentication System
 
-A comprehensive authentication system using Firebase with features like login history tracking, profile management, theme switching, and auto-login capabilities.
+A modern authentication system using Firebase with features like login history tracking, profile management, theme switching, and secure auto-login capabilities.
 
-## Features
+## ✨ New Features Added
 
-- User Authentication:
-  - Email/Password Login & Registration
-  - Google Sign-in Integration
-  - Passwordless Email Link Authentication
-  - Password Reset Functionality
+### 🌓 Theme System
+- Dynamic light/dark theme switching
+- System theme preference detection
+- Persistent theme settings
+- Smooth transitions between themes
 
-- Security Features:
-  - PIN Protection System
-  - Login History Tracking (Last 20 entries)
-  - Device & IP Tracking
-  - Session Management
-
-- Profile Management:
-  - Profile Photo URL Update
-  - User Information Display
-  - Real-time Data Updates
-
-## New Features Added
-
-### 1. Theme Switching
-- Light/Dark theme support
-- Persistent theme preference
-- Automatic theme detection
-- Smooth theme transitions
-
-### 2. Auto-Login System
-- Remember me functionality
+### 🔐 Enhanced Security
+- Automatic login with remember me functionality
 - Secure credential storage
-- Automatic login on revisit
-- Manual logout clearing
+- Session persistence
+- Auto-cleanup of expired sessions
 
-### 3. Enhanced User Experience
-- Theme toggle button in header
-- Remember me checkbox in login form
-- Persistent session management
-- Secure credential handling
+### 🎨 UI/UX Improvements
+- Responsive theme toggle in header
+- Theme-aware components
+- Improved form accessibility
+- Enhanced visual feedback
 
-## Technical Details
+## 🚀 Features
+
+### Authentication
+- Email/Password login
+- Google OAuth integration
+- Passwordless email links
+- Password reset functionality
+
+### Security
+- PIN protection
+- Login history (last 20 entries)
+- Device tracking
+- IP logging
+
+### Profile Management
+- Photo URL management
+- Real-time updates
+- User information display
+
+## 🛠️ Technical Implementation
 
 ### Firebase Services Used
 - Firebase Authentication
@@ -94,7 +94,10 @@ Set the following rules in the Firebase Realtime Database:
     "users": {
       "$uid": {
         ".read": "$uid === auth.uid",
-        ".write": "$uid === auth.uid"
+        ".write": "$uid === auth.uid",
+        "loginHistory": {
+          ".indexOn": ["timestamp"]
+        }
       }
     }
   }
