@@ -1,37 +1,55 @@
 :root {
+    /* Base Colors */
     --primary-color: #4a90e2;
     --secondary-color: #f8f9fa;
     --accent-color: #34495e;
     --success-color: #2ecc71;
     --error-color: #e74c3c;
 
-    /* Theme Variables */
+    /* Light Theme */
     --bg-color: #f5f7fa;
     --text-color: #2d3436;
     --card-bg: rgba(255, 255, 255, 0.95);
     --input-bg: #ffffff;
+    --input-text: #2d3436;
+    --border-color: #edf2f7;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --modal-bg: #ffffff;
+    --dropdown-bg: #ffffff;
+    --dropdown-text: #2d3436;
+    --hover-bg: rgba(74, 144, 226, 0.1);
 }
 
 [data-theme="dark"] {
-    --bg-color: #2d3436;
-    --text-color: #f5f7fa;
+    /* Dark Theme */
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
     --card-bg: rgba(45, 52, 54, 0.95);
-    --input-bg: #353b48;
+    --input-bg: #2d3436;
+    --input-text: #ffffff;
+    --border-color: #404040;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --modal-bg: #2d3436;
+    --dropdown-bg: #2d3436;
+    --dropdown-text: #ffffff;
+    --hover-bg: rgba(74, 144, 226, 0.2);
+    --is-dark: 1;
+}
+
+[data-theme="light"] {
+    --is-dark: 0;
 }
 
 body {
     background: var(--bg-color);
     color: var(--text-color);
     transition: all 0.3s ease;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    min-height: 100vh;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
 .card {
     border: none;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px var(--shadow-color);
     backdrop-filter: blur(10px);
     background: var(--card-bg);
     transition: transform 0.3s ease;
@@ -48,7 +66,7 @@ body {
 
 .nav-tabs .nav-link {
     border: none;
-    color: var(--accent-color);
+    color: var(--text-color);
     font-weight: 500;
     padding: 12px 25px;
     border-radius: 8px;
@@ -62,20 +80,26 @@ body {
 }
 
 .form-control {
-    border: 2px solid #edf2f7;
+    border: 2px solid var(--border-color);
     border-radius: 10px;
     padding: 12px 20px;
     font-size: 1rem;
     transition: all 0.3s ease;
     background-color: var(--input-bg);
-    color: var(--text-color);
+    color: var(--input-text);
 }
 
 .form-control:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
     background-color: var(--input-bg);
+    color: var(--input-text);
+}
+
+.input-group-text {
+    background-color: var(--input-bg);
     color: var(--text-color);
+    border-color: var(--border-color);
 }
 
 .btn {
@@ -121,7 +145,7 @@ body {
 
 .btn-link:hover {
     color: #357abd;
-    background-color: rgba(74, 144, 226, 0.1);
+    background-color: var(--hover-bg);
     border-radius: 8px;
 }
 
@@ -131,11 +155,14 @@ body {
     margin-top: 1rem;
     border: none;
     animation: slideIn 0.3s ease;
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
 }
 
 .alert-success {
     background-color: var(--success-color);
-    color: white;
+    color: white !important;
 }
 
 @keyframes slideIn {
@@ -181,6 +208,11 @@ body {
     padding: 15px;
     border-radius: 10px;
     text-align: center;
+}
+
+[data-theme="dark"] .stat-card {
+    background: var(--card-bg);
+    color: var(--text-color);
 }
 
 /* Profile photo styles */
@@ -250,20 +282,564 @@ body {
 .modal-content {
     border: none;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    background: var(--modal-bg);
+    color: var(--text-color);
 }
 
 .modal-header {
     border-bottom: none;
     padding: 1.5rem 1.5rem 0.5rem;
+    border-bottom-color: var(--border-color);
 }
 
 .modal-body {
     padding: 1.5rem;
 }
 
+.modal-footer {
+    border-top-color: var(--border-color);
+}
+
+.dropdown-menu {
+    background: var(--dropdown-bg);
+    border-color: var(--border-color);
+}
+
+.dropdown-item {
+    color: var(--dropdown-text);
+}
+
+.dropdown-item:hover {
+    background: var(--hover-bg);
+    color: var(--text-color) !important;
+}
+
+.dropdown-divider {
+    border-color: var(--border-color);
+}
+
+.table {
+    color: var(--text-color);
+}
+
+.table thead th {
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.table td {
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.nav-tabs .nav-link {
+    color: var(--text-color);
+}
+
+/* Theme Toggle Button Styles */
+#themeToggle {
+    padding: 8px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+#themeToggle:hover {
+    transform: rotate(180deg);
+    background: var(--hover-bg);
+}
+
+#themeToggle i {
+    font-size: 1.2rem;
+}
+
+[data-theme="dark"] .text-muted {
+    color: #a0aec0 !important;
+}
+
+[data-theme="dark"] .alert {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
 #loginHistory li {
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
     color: #495057;
+}
+
+/* Text color adjustments */
+.modal-header .modal-title,
+.dropdown-item,
+.nav-tabs .nav-link,
+.form-check-label,
+.table,
+.stat-card,
+h1, h2, h3, h4, h5, h6,
+p,
+label,
+.text-muted {
+    color: var(--text-color) !important;
+}
+
+/* Input group text color */
+.input-group-text {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+/* Table specific adjustments */
+.table thead th {
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.table td {
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+/* Dropdown menu adjustments */
+.dropdown-menu {
+    background: var(--dropdown-bg);
+    border-color: var(--border-color);
+}
+
+.dropdown-item:hover {
+    background: var(--hover-bg);
+    color: var(--text-color) !important;
+}
+
+.dropdown-divider {
+    border-color: var(--border-color);
+}
+
+/* Modal adjustments */
+.modal-content {
+    background: var(--modal-bg);
+}
+
+.modal-header {
+    border-bottom-color: var(--border-color);
+}
+
+.modal-footer {
+    border-top-color: var(--border-color);
+}
+
+/* Form check adjustments */
+.form-check-input {
+    background-color: var(--input-bg);
+    border-color: var(--border-color);
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Close button color */
+.btn-close {
+    filter: invert(var(--is-dark));
+}
+
+/* Small text and muted text */
+small,
+.small,
+.text-muted {
+    color: var(--text-color) !important;
+    opacity: 0.75;
+}
+
+/* Alert adjustments */
+.alert {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.alert-success {
+    background-color: var(--success-color);
+    color: white !important;
+}
+
+/* Login History Table Styles */
+.table-responsive {
+    background-color: var(--modal-bg);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead {
+    background-color: var(--card-bg);
+}
+
+.table thead th {
+    padding: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: var(--hover-bg);
+}
+
+.table td {
+    padding: 1rem;
+    vertical-align: middle;
+    border-color: var(--border-color);
+}
+
+.table td div {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.table td small {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+/* Modal adjustments for login history */
+#loginHistoryModal .modal-content {
+    background: var(--modal-bg);
+}
+
+#loginHistoryModal .modal-header {
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+#loginHistoryModal .modal-title {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+#loginHistoryModal .btn-close {
+    filter: invert(var(--is-dark));
+}
+
+/* Empty state styling */
+.table tbody tr.no-data td {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-color);
+}
+
+/* Modal styles for dark mode */
+.modal-content {
+    background-color: var(--modal-bg);
+    color: var(--text-color);
+}
+
+.modal-header {
+    border-bottom-color: var(--border-color);
+}
+
+.modal-footer {
+    border-top-color: var(--border-color);
+}
+
+.table-responsive {
+    background-color: var(--modal-bg);
+}
+
+/* Close button in dark mode */
+[data-theme="dark"] .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+ 
+/* Login History Modal Dark Mode Fixes */
+#loginHistoryModal .modal-content {
+    background-color: var(--modal-bg);
+}
+
+#loginHistoryModal .modal-header {
+    border-bottom: 1px solid var(--border-color);
+}
+
+#loginHistoryModal .table {
+    color: var(--text-color);
+}
+
+#loginHistoryModal .table thead {
+    background-color: var(--card-bg);
+}
+
+#loginHistoryModal .table thead th {
+    color: var(--text-color);
+    border-bottom: 2px solid var(--border-color);
+    font-weight: 600;
+}
+
+#loginHistoryModal .table tbody tr {
+    background-color: var(--modal-bg);
+    transition: all 0.2s ease;
+}
+
+#loginHistoryModal .table tbody tr:hover {
+    background-color: var(--hover-bg);
+}
+
+#loginHistoryModal .table td {
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+#loginHistoryModal .table td small {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+#loginHistoryModal .table td i {
+    color: var(--primary-color);
+}
+
+#loginHistoryModal .no-data td {
+    text-align: center;
+    padding: 2rem;
+}
+
+#loginHistoryModal .no-data i {
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+#loginHistoryModal .table-responsive {
+    border-radius: 10px;
+    background-color: var(--modal-bg);
+}
+
+[data-theme="dark"] #loginHistoryModal .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Improve text contrast in dark mode */
+[data-theme="dark"] .text-muted {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+[data-theme="dark"] #loginHistoryModal .table td div {
+    color: var(--text-color);
+}
+
+/* Login History Modal Specific Styles */
+#loginHistoryModal .table-responsive {
+    background: var(--modal-bg);
+    border-radius: 10px;
+    margin: -1rem;  /* Remove default padding */
+    padding: 1rem;
+}
+
+#loginHistoryModal .table {
+    margin-bottom: 0;
+    color: var(--text-color);
+    background: var(--modal-bg);
+}
+
+#loginHistoryModal .table thead {
+    position: sticky;
+    top: 0;
+    background: var(--card-bg);
+    z-index: 1;
+}
+
+#loginHistoryModal .table thead th {
+    padding: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--border-color);
+    white-space: nowrap;
+}
+
+#loginHistoryModal .table tbody tr {
+    transition: all 0.2s ease;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#loginHistoryModal .table tbody tr:last-child {
+    border-bottom: none;
+}
+
+#loginHistoryModal .table tbody tr:hover {
+    background: var(--hover-bg);
+}
+
+#loginHistoryModal .table td {
+    padding: 1rem;
+    vertical-align: middle;
+    color: var(--text-color);
+}
+
+#loginHistoryModal .table td div {
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 0.25rem;
+}
+
+#loginHistoryModal .table td small {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+#loginHistoryModal .modal-content {
+    background: var(--modal-bg);
+}
+
+#loginHistoryModal .modal-header {
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+}
+
+#loginHistoryModal .modal-title {
+    color: var(--text-color);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#loginHistoryModal .modal-title i {
+    color: var(--primary-color);
+}
+
+#loginHistoryModal .modal-body {
+    padding: 1rem;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Scrollbar Styles for the Modal */
+#loginHistoryModal .modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+#loginHistoryModal .modal-body::-webkit-scrollbar-track {
+    background: var(--modal-bg);
+}
+
+#loginHistoryModal .modal-body::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+#loginHistoryModal .modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* Login History Modal Improvements */
+#loginHistoryModal .modal-content {
+    background: var(--modal-bg);
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+#loginHistoryModal .table-responsive {
+    background: var(--modal-bg);
+    border-radius: 10px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid var(--border-color);
+}
+
+#loginHistoryModal .table {
+    margin: 0;
+    background: transparent;
+}
+
+#loginHistoryModal .table thead {
+    background: var(--card-bg);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+#loginHistoryModal .table thead th {
+    padding: 1rem;
+    color: var(--text-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+#loginHistoryModal .table tbody tr {
+    background: var(--modal-bg);
+    transition: all 0.2s ease;
+}
+
+#loginHistoryModal .table tbody tr:hover {
+    background: var(--hover-bg);
+}
+
+#loginHistoryModal .table td {
+    padding: 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+#loginHistoryModal .table td .badge {
+    padding: 0.5em 1em;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+#loginHistoryModal .table td .device-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#loginHistoryModal .table td .device-icon {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+/* Dark mode specific adjustments */
+[data-theme="dark"] #loginHistoryModal .table {
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] #loginHistoryModal .modal-header {
+    border-bottom-color: var(--border-color);
+}
+
+[data-theme="dark"] #loginHistoryModal .table td,
+[data-theme="dark"] #loginHistoryModal .table th {
+    color: var(--text-color);
+}
+
+/* Empty state styling */
+#loginHistoryModal .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-color);
+}
+
+#loginHistoryModal .empty-state i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    opacity: 0.5;
+    margin-bottom: 1rem;
 }

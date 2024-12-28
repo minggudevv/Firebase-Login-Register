@@ -80,37 +80,99 @@ function loadLoginHistory() {
                 entries.push(child.val());
             });
 
-            // Sort by timestamp descending and limit to 20
+            if (entries.length === 0) {
+                showEmptyState(historyTable);
+                return;
+            }
+
             entries
                 .sort((a, b) => b.timestamp - a.timestamp)
                 .slice(0, 20)
                 .forEach(entry => {
+                    const deviceInfo = getDeviceInfo(entry.userAgent);
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>
-                            <div>${entry.formattedDate || 'N/A'}</div>
-                            <small class="text-muted">${entry.formattedTime || 'N/A'}</small>
+                            <div class="fw-bold">${formatDate(entry.formattedDate)}</div>
+                            <small class="text-muted">${entry.formattedTime}</small>
                         </td>
-                        <td>${entry.ip || 'N/A'}</td>
                         <td>
-                            <small class="text-muted">${entry.userAgent || 'N/A'}</small>
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-primary bg-opacity-10 text-primary">
+                                    <i class="fas fa-globe me-1"></i>
+                                    ${entry.ip || 'N/A'}
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="device-info">
+                                <i class="device-icon ${deviceInfo.icon}"></i>
+                                <div>
+                                    <div class="fw-medium">${deviceInfo.browser}</div>
+                                    <small class="text-muted">${deviceInfo.os}</small>
+                                </div>
+                            </div>
                         </td>
                     `;
                     historyTable.appendChild(row);
                 });
-
-            // Update last login
-            if (entries.length > 0) {
-                const lastLoginElement = document.getElementById('lastLogin');
-                if (lastLoginElement) {
-                    const latest = entries[0];
-                    lastLoginElement.textContent = `${latest.formattedDate} ${latest.formattedTime}`;
-                }
-            }
         } else {
-            historyTable.innerHTML = `
-                <tr><td colspan="3" class="text-center">No login history available</td></tr>
-            `;
+            showEmptyState(historyTable);
         }
     });
+}
+
+function showEmptyState(table) {
+    table.innerHTML = `
+        <tr>
+            <td colspan="3">
+                <div class="empty-state">
+                    <i class="fas fa-history"></i>
+                    <h5>No Login History</h5>
+                    <p class="text-muted mb-0">Your login history will appear here</p>
+                </div>
+            </td>
+        </tr>
+    `;
+}
+
+function getDeviceInfo(userAgent) {
+    const parser = new UAParser(userAgent);
+    const result = parser.getResult();
+    
+    let icon = 'fas fa-desktop';
+    if (result.device.type === 'mobile') icon = 'fas fa-mobile-alt';
+    else if (result.device.type === 'tablet') icon = 'fas fa-tablet-alt';
+    
+    return {
+        browser: result.browser.name,
+        os: result.os.name + ' ' + result.os.version,
+        icon: icon
+    };
+}
+
+function formatDate(date) {
+    if (!date) return 'N/A';
+    return new Date(date).toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    });
+}
+
+function formatUserAgent(ua) {
+    if (!ua) return 'N/A';
+    const parser = new UAParser(ua);
+    const result = parser.getResult();
+    return `${result.browser.name} on ${result.os.name}`;
+}
+
+function updateLastLogin(latest) {
+    const lastLoginElement = document.getElementById('lastLogin');
+    if (lastLoginElement && latest) {
+        lastLoginElement.innerHTML = `
+            <div>${formatDate(latest.formattedDate)}</div>
+            <small>${latest.formattedTime}</small>
+        `;
+    }
 }
